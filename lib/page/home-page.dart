@@ -26,12 +26,13 @@ class _HomePageState extends State<HomePage> {
         ),
         Text("Estoy en el medio"),
         Container(
-          color: Colors.yellow,
+          color: Colors.blue,
           width: 100,
           height: 100,
           child: Center(child: Text("Hola Mundo")),
         ),
         Container(
+          color: Colors.yellow,
           width: 100,
           height: 100,
           child: Center(child: Image(image: AssetImage("assets/imagen1.jpeg"))),
