@@ -7,6 +7,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   String operaciones = "";
+  String resultadoOperaciones = "";
+  List<Text> listaResultados = [];
 
   @override
   Widget build(BuildContext context) {
@@ -170,10 +172,16 @@ class _HomePageState extends State<HomePage> {
 
 void _calcularOperacion() {
   var arreglo = operaciones.split(" ");
+  int resultado = 0;
 
-  if (arreglo[1].trim() == " . ") {
-    var resultadoOperacion = int.parse(arreglo[0]) - int.parse(arreglo[2]);
-    setState() {
-      resultadoOperaciones = "$resultado";
-    });
+  if (arreglo[1].trim() == " - ") {
+    resultado = int.parse(arreglo[0]) - int.parse(arreglo[2]);
+  }
+
+  setState((){
+    resultadoOperaciones = "$resultado";
+  });
+
+  print(arreglo);
+  )
 }
