@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Aplicación de taller',
+      title: 'Calculadora',
       theme: ThemeData.light(),
       home: HomePage(),
     );

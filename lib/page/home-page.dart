@@ -21,7 +21,6 @@ class _HomePageState extends State<HomePage> {
         Container(
           color: Colors.red,
         ),
-        Text("Estoy en el medio"),
         Container(
           color: Colors.blue,
           height: 100,
@@ -30,15 +29,16 @@ class _HomePageState extends State<HomePage> {
             color: Colors.yellow,
             child: Column(
               children: [
-                Row(children: [
-                  ElevatedButton(onPressed: () {}, child: Text("0")),
-                  ElevatedButton(onPressed: () {}, child: Text("C")),
-                  ElevatedButton(onPressed: () {}, child: Text("=")),
-                  ElevatedButton(onPressed: () {}, child: Text("+")),
-                ]),
+                Row(
+                  children: [
+                    ElevatedButton(onPressed: () {}, child: Text("0")),
+                    ElevatedButton(onPressed: () {}, child: Text("C")),
+                    ElevatedButton(onPressed: () {}, child: Text("=")),
+                    ElevatedButton(onPressed: () {}, child: Text("+")),
+                  ],
+                )
               ],
-            )),
-      ],
-    );
+            ),
+          },
+    },
   }
-}
