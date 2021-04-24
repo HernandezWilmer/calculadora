@@ -20,29 +20,23 @@ class _HomePageState extends State<HomePage> {
       children: [
         Container(
           color: Colors.red,
-          width: 100,
-          height: 100,
-          child: Center(child: Text("Hola Mundo")),
         ),
         Text("Estoy en el medio"),
         Container(
           color: Colors.blue,
-          width: 100,
           height: 100,
-          child: Center(child: Text("Hola Mundo")),
         ),
         Container(
-          color: Colors.yellow,
-          width: 100,
-          height: 100,
-          child: Center(child: Image(image: AssetImage("assets/imagen1.jpeg"))),
-        ),
-        ElevatedButton(onPressed: () {}, child: Icon(Icons.add)),
-        ElevatedButton(onPressed: null, child: Text("Texto1")),
-        ElevatedButton(
-            onPressed: () {},
+            color: Colors.yellow,
             child: Column(
-              children: [Icon(Icons.add), Text("Texto2"), Text("Texto3")],
+              children: [
+                Row(children: [
+                  ElevatedButton(onPressed: () {}, child: Text("0")),
+                  ElevatedButton(onPressed: () {}, child: Text("C")),
+                  ElevatedButton(onPressed: () {}, child: Text("=")),
+                  ElevatedButton(onPressed: () {}, child: Text("+")),
+                ]),
+              ],
             )),
       ],
     );
