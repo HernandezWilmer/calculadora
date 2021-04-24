@@ -150,18 +150,7 @@ class _HomePageState extends State<HomePage> {
                       },
                       child: Text("C")),
                   ElevatedButton(
-                      onPressed: () {
-                        print(operaciones);
-
-                        var arreglo = operaciones.split(" ");
-
-                        if (arreglo[1].trim() == " . ") {
-                          //var resultadoOperacion =
-                          //int.parse(arreglo[0]) - int.parse(arreglo[2]);
-                        }
-                        print(arreglo);
-                      },
-                      child: Text("=")),
+                      onPressed: _calcularOperacion, child: Text("=")),
                   ElevatedButton(
                       onPressed: () {
                         setState(() {
@@ -177,4 +166,14 @@ class _HomePageState extends State<HomePage> {
       ],
     );
   }
+}
+
+void _calcularOperacion() {
+  var arreglo = operaciones.split(" ");
+
+  if (arreglo[1].trim() == " . ") {
+    var resultadoOperacion = int.parse(arreglo[0]) - int.parse(arreglo[2]);
+    setState() {
+      resultadoOperaciones = "$resultado";
+    });
 }
