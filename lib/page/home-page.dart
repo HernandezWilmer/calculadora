@@ -1,3 +1,15 @@
+/*
+// puntos a realizar
+// 1. realizar la validación cuando solo tengo un valor en operacion y doy click en = ,
+//      - agrega el valor en area de resultados
+//      - mantienen el valor y no agrega mas valores en area de resultados
+// // 2. Generar mensaje de error para expresiones malformadas
+//  - crear un mensaje de alerta cuando las expresiones  son mal formadas ej:  85 *****
+// 3. Agregar boton y funcionaldiad de raiz cuadrada
+// 4. Agregar boton y funcionalidad cuadrado
+// 5. Agregar boton
+*/
+
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -5,11 +17,11 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  String operaciones = "";
-  String resultadoOperaciones = "";
-  List<Text> listaResultados = [];
+String operaciones = "";
+String resultadoOperaciones = "";
+List<Text> listaResultados = [];
 
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -177,11 +189,4 @@ void _calcularOperacion() {
   if (arreglo[1].trim() == " - ") {
     resultado = int.parse(arreglo[0]) - int.parse(arreglo[2]);
   }
-
-  setState((){
-    resultadoOperaciones = "$resultado";
-  });
-
-  print(arreglo);
-  )
 }
