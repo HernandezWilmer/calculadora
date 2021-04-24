@@ -1,13 +1,12 @@
-/*
-// puntos a realizar
+/*Puntos para hacer:
 // 1. realizar la validación cuando solo tengo un valor en operacion y doy click en = ,
 //      - agrega el valor en area de resultados
 //      - mantienen el valor y no agrega mas valores en area de resultados
-// // 2. Generar mensaje de error para expresiones malformadas
+// 2. Generar mensaje de error para expresiones malformadas
 //  - crear un mensaje de alerta cuando las expresiones  son mal formadas ej:  85 *****
 // 3. Agregar boton y funcionaldiad de raiz cuadrada
 // 4. Agregar boton y funcionalidad cuadrado
-// 5. Agregar boton
+// 5. Agregar boton y funcionalidad porcentaje ej. 200*5% = 10
 */
 
 import 'package:flutter/material.dart';
@@ -17,11 +16,11 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-String operaciones = "";
-String resultadoOperaciones = "";
-List<Text> listaResultados = [];
-
 class _HomePageState extends State<HomePage> {
+  String operaciones = "";
+  String resultadoOperaciones = "";
+  List<Text> listaResultados = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,7 +88,11 @@ class _HomePageState extends State<HomePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  ElevatedButton(onPressed: () {}, child: Text("4")),
+                  ElevatedButton(
+                      onPressed: () {
+                        //Falta
+                      },
+                      child: Text("4")),
                   ElevatedButton(
                       onPressed: () {
                         setState(() {
@@ -164,7 +167,10 @@ class _HomePageState extends State<HomePage> {
                       },
                       child: Text("C")),
                   ElevatedButton(
-                      onPressed: _calcularOperacion, child: Text("=")),
+                      onPressed: () {
+                        _calcularOperacion();
+                      },
+                      child: Text("=")),
                   ElevatedButton(
                       onPressed: () {
                         setState(() {
@@ -180,13 +186,29 @@ class _HomePageState extends State<HomePage> {
       ],
     );
   }
-}
 
-void _calcularOperacion() {
-  var arreglo = operaciones.split(" ");
-  int resultado = 0;
+  void _calcularOperacion() {
+    var arreglo = operaciones.split(" ");
+    int resultado = 0;
 
-  if (arreglo[1].trim() == " - ") {
-    resultado = int.parse(arreglo[0]) - int.parse(arreglo[2]);
+    if (arreglo[1].trim() == " - ") {
+      print(arreglo[0]);
+      resultado = int.parse(arreglo[0]) - int.parse(arreglo[2]);
+    }
+    if (arreglo[1].trim() == "+") {
+      resultado = int.parse(arreglo[0]) + int.parse(arreglo[2]);
+    }
+    if (arreglo[1].trim() == "/") {
+      resultado = int.parse(arreglo[0]) ~/ int.parse(arreglo[2]);
+    }
+    if (arreglo[1].trim() == "*") {
+      resultado = int.parse(arreglo[0]) * int.parse(arreglo[2]);
+    }
+    setState(() {
+      listaResultados.add(Text("$resultado"));
+    });
+
+    //print(arreglo);
+//    print("El resultado es: $resultado");
   }
 }
