@@ -37,6 +37,7 @@ class _HomePageState extends State<HomePage> {
         Expanded(
           child: Container(
             color: Colors.red,
+            //child: Text(resultadoOperaciones),
           ),
         ),
         Container(
@@ -79,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                   ElevatedButton(
                       onPressed: () {
                         setState(() {
-                          operaciones += "/";
+                          operaciones += " / ";
                         });
                       },
                       child: Text("/"))
@@ -110,7 +111,7 @@ class _HomePageState extends State<HomePage> {
                   ElevatedButton(
                       onPressed: () {
                         setState(() {
-                          operaciones += "x";
+                          operaciones += " x ";
                         });
                       },
                       child: Text("x"))
@@ -143,7 +144,7 @@ class _HomePageState extends State<HomePage> {
                   ElevatedButton(
                       onPressed: () {
                         setState(() {
-                          operaciones += "-";
+                          operaciones += " - ";
                         });
                       },
                       child: Text("-"))
@@ -174,7 +175,7 @@ class _HomePageState extends State<HomePage> {
                   ElevatedButton(
                       onPressed: () {
                         setState(() {
-                          operaciones += "+ ";
+                          operaciones += " + ";
                         });
                       },
                       child: Text("+"))
@@ -188,27 +189,25 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _calcularOperacion() {
+    print(operaciones);
     var arreglo = operaciones.split(" ");
     int resultado = 0;
+    //print(arreglo);
 
-    if (arreglo[1].trim() == " - ") {
-      print(arreglo[0]);
+    if (arreglo[1].trim() == "-") {
       resultado = int.parse(arreglo[0]) - int.parse(arreglo[2]);
-    }
-    if (arreglo[1].trim() == "+") {
+    } else if (arreglo[1].trim() == "+") {
       resultado = int.parse(arreglo[0]) + int.parse(arreglo[2]);
-    }
-    if (arreglo[1].trim() == "/") {
+    } else if (arreglo[1].trim() == "/") {
       resultado = int.parse(arreglo[0]) ~/ int.parse(arreglo[2]);
-    }
-    if (arreglo[1].trim() == "*") {
+    } else if (arreglo[1].trim() == "x") {
       resultado = int.parse(arreglo[0]) * int.parse(arreglo[2]);
     }
     setState(() {
       listaResultados.add(Text("$resultado"));
     });
 
-    //print(arreglo);
-//    print("El resultado es: $resultado");
+    //resultadoOperaciones = "El resultado es: $resultado";
+    print("El resultado es: $resultado");
   }
 }
