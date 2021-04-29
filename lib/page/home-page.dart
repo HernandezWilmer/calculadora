@@ -204,18 +204,18 @@ class _HomePageState extends State<HomePage> {
     //print(arreglo);
 
     if (operador == "-") {
-      resultado = primerTermino - int.parse(arreglo[2]);
+      resultado = primerTermino - segundoTermino;
     } else if (operador == "+") {
       resultado = primerTermino + segundoTermino;
-    } else if (operador == "/") {
+    } else if (operador == "/" && segundoTermino != 0) {
       resultado = primerTermino / segundoTermino;
     } else if (operador == "x") {
       resultado = primerTermino * segundoTermino;
-    } else {
-      resultadoOperaciones = "Operación incorrecta";
     }
+
     setState(() {
-      resultadoOperaciones = "$resultado";
+      resultadoOperaciones =
+          "$primerTermino $operador $segundoTermino = $resultado";
       listaResultados.add(Text("$resultado"));
     });
 
