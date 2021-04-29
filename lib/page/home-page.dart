@@ -211,11 +211,13 @@ class _HomePageState extends State<HomePage> {
       resultado = primerTermino / segundoTermino;
     } else if (operador == "x") {
       resultado = primerTermino * segundoTermino;
+    } else {
+      resultado = 0;
     }
 
     setState(() {
-      resultadoOperaciones =
-          "$primerTermino $operador $segundoTermino = $resultado";
+      resultadoOperaciones +=
+          "$primerTermino $operador $segundoTermino = $resultado\n\n";
       listaResultados.add(Text("$resultado"));
     });
 
