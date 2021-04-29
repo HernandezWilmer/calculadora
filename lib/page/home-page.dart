@@ -194,19 +194,25 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _calcularOperacion() {
-    print(operaciones);
+    //print(operaciones);
     var arreglo = operaciones.split(" ");
-    int resultado = 0;
+    double resultado = 0;
+    double primerTermino = double.parse(arreglo[0].trim());
+    double segundoTermino = double.parse(arreglo[2].trim());
+    String operador = arreglo[1].trim();
+
     //print(arreglo);
 
-    if (arreglo[1].trim() == "-") {
-      resultado = int.parse(arreglo[0]) - int.parse(arreglo[2]);
-    } else if (arreglo[1].trim() == "+") {
-      resultado = int.parse(arreglo[0]) + int.parse(arreglo[2]);
-    } else if (arreglo[1].trim() == "/") {
-      resultado = int.parse(arreglo[0]) ~/ int.parse(arreglo[2]);
-    } else if (arreglo[1].trim() == "x") {
-      resultado = int.parse(arreglo[0]) * int.parse(arreglo[2]);
+    if (operador == "-") {
+      resultado = primerTermino - int.parse(arreglo[2]);
+    } else if (operador == "+") {
+      resultado = primerTermino + segundoTermino;
+    } else if (operador == "/") {
+      resultado = primerTermino / segundoTermino;
+    } else if (operador == "x") {
+      resultado = primerTermino * segundoTermino;
+    } else {
+      resultadoOperaciones = "Operación incorrecta";
     }
     setState(() {
       resultadoOperaciones = "$resultado";
