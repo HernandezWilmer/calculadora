@@ -36,9 +36,12 @@ class _HomePageState extends State<HomePage> {
       children: [
         Expanded(
           child: Container(
-            color: Colors.red,
-            //child: Text(resultadoOperaciones),
-          ),
+              color: Colors.red,
+              child: Row(
+                children: [
+                  Text(resultadoOperaciones),
+                ],
+              )),
         ),
         Container(
           color: Colors.blue,
@@ -91,7 +94,9 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   ElevatedButton(
                       onPressed: () {
-                        //Falta
+                        setState(() {
+                          operaciones += "4";
+                        });
                       },
                       child: Text("4")),
                   ElevatedButton(
@@ -204,10 +209,10 @@ class _HomePageState extends State<HomePage> {
       resultado = int.parse(arreglo[0]) * int.parse(arreglo[2]);
     }
     setState(() {
+      resultadoOperaciones = "$resultado";
       listaResultados.add(Text("$resultado"));
     });
 
-    //resultadoOperaciones = "El resultado es: $resultado";
     print("El resultado es: $resultado");
   }
 }
