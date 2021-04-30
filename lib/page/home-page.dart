@@ -201,9 +201,6 @@ class _HomePageState extends State<HomePage> {
     String operador = arreglo[1].trim();
 
     // 1. realizar la validación cuando solo tengo un valor en operacion y doy click en = ,
-    //      - agrega el valor en area de resultados
-    //      - mantienen el valor y no agrega mas valores en area de resultados
-
     if (arreglo[0].trim() == "" || arreglo[2].trim() == "" || operador == "") {
       setState(() {
         resultadoOperaciones += "Los términos.están incompletos\n";
