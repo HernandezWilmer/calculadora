@@ -196,26 +196,38 @@ class _HomePageState extends State<HomePage> {
   void _calcularOperacion() {
     var arreglo = operaciones.split(" ");
     double resultado = 0;
-    double primerTermino = double.parse(arreglo[0].trim());
-    double segundoTermino = double.parse(arreglo[2].trim());
+    double primerTermino = 0;
+    double segundoTermino = 0;
     String operador = arreglo[1].trim();
 
-    if (operador == "-") {
-      resultado = primerTermino - segundoTermino;
-    } else if (operador == "+") {
-      resultado = primerTermino + segundoTermino;
-    } else if (operador == "/" && segundoTermino != 0) {
-      resultado = primerTermino / segundoTermino;
-    } else if (operador == "x") {
-      resultado = primerTermino * segundoTermino;
-    } else {
-      resultado = 0;
-    }
+    // 1. realizar la validación cuando solo tengo un valor en operacion y doy click en = ,
+    //      - agrega el valor en area de resultados
+    //      - mantienen el valor y no agrega mas valores en area de resultados
 
-    setState(() {
-      resultadoOperaciones +=
-          "$primerTermino $operador $segundoTermino = $resultado\n\n";
-      listaResultados.add(Text("$resultado"));
-    });
+    if (arreglo[0].trim() == "" || arreglo[2].trim() == "" || operador == "") {
+      setState(() {
+        resultadoOperaciones += "Los términos.están incompletos\n";
+      });
+    } else {
+      primerTermino = double.parse(arreglo[0].trim());
+      segundoTermino = double.parse(arreglo[2].trim());
+      if (operador == "-") {
+        resultado = primerTermino - segundoTermino;
+      } else if (operador == "+") {
+        resultado = primerTermino + segundoTermino;
+      } else if (operador == "/" && segundoTermino != 0) {
+        resultado = primerTermino / segundoTermino;
+      } else if (operador == "x") {
+        resultado = primerTermino * segundoTermino;
+      } else {
+        resultado = 0;
+      }
+
+      setState(() {
+        resultadoOperaciones +=
+            "$primerTermino $operador $segundoTermino = $resultado\n\n";
+        listaResultados.add(Text("$resultado"));
+      });
+    }
   }
 }
