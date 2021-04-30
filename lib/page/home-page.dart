@@ -5,8 +5,9 @@
 // 2. Generar mensaje de error para expresiones malformadas
 //  - crear un mensaje de alerta cuando las expresiones  son mal formadas ej:  85 *****
 // 3. Agregar boton y funcionaldiad de raiz cuadrada
-// 4. Agregar boton y funcionalidad cuadrado
+// 4. Agregar boton y funcionalidad cuadrado (poner el 2 cmo superíndice)
 // 5. Agregar boton y funcionalidad porcentaje ej. 200*5% = 10
+// --- Solamente operaciones con dos números ---
 */
 
 import 'package:flutter/material.dart';
@@ -31,16 +32,25 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  //Hola enanita.
   Widget _body() {
     return Column(
       children: [
         Expanded(
           child: Container(
               color: Colors.red,
-              child: Row(
-                children: [
-                  Text(resultadoOperaciones),
-                ],
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: listaResultados,
+                    ),
+                  ],
+                ),
               )),
         ),
         Container(
@@ -203,7 +213,8 @@ class _HomePageState extends State<HomePage> {
     // 1. realizar la validación cuando solo tengo un valor en operacion y doy click en = ,
     if (arreglo[0].trim() == "" || arreglo[2].trim() == "" || operador == "") {
       setState(() {
-        resultadoOperaciones += "Los términos.están incompletos\n";
+//        resultadoOperaciones += "Los términos.están incompletos\n";
+        listaResultados.add(Text("Los términos.están incompletos"));
       });
     } else {
       primerTermino = double.parse(arreglo[0].trim());
@@ -212,18 +223,15 @@ class _HomePageState extends State<HomePage> {
         resultado = primerTermino - segundoTermino;
       } else if (operador == "+") {
         resultado = primerTermino + segundoTermino;
-      } else if (operador == "/" && segundoTermino != 0) {
+      } else if (operador == "/" && segundoTermino > 0) {
         resultado = primerTermino / segundoTermino;
       } else if (operador == "x") {
         resultado = primerTermino * segundoTermino;
-      } else {
-        resultado = 0;
       }
 
       setState(() {
-        resultadoOperaciones +=
-            "$primerTermino $operador $segundoTermino = $resultado\n\n";
-        listaResultados.add(Text("$resultado"));
+        listaResultados.add(
+            Text("$primerTermino $operador $segundoTermino = $resultado\n"));
       });
     }
   }
