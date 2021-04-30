@@ -194,14 +194,11 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _calcularOperacion() {
-    //print(operaciones);
     var arreglo = operaciones.split(" ");
     double resultado = 0;
     double primerTermino = double.parse(arreglo[0].trim());
     double segundoTermino = double.parse(arreglo[2].trim());
     String operador = arreglo[1].trim();
-
-    //print(arreglo);
 
     if (operador == "-") {
       resultado = primerTermino - segundoTermino;
@@ -220,7 +217,5 @@ class _HomePageState extends State<HomePage> {
           "$primerTermino $operador $segundoTermino = $resultado\n\n";
       listaResultados.add(Text("$resultado"));
     });
-
-    print("El resultado es: $resultado");
   }
 }
