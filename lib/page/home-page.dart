@@ -10,6 +10,7 @@
 // --- Solamente operaciones con dos números ---
 */
 
+import 'dart:math';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -96,7 +97,16 @@ class _HomePageState extends State<HomePage> {
                           operaciones += " / ";
                         });
                       },
-                      child: Text("/"))
+                      child: Text("/")),
+                  ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          operaciones += " √ ";
+                          _calcularOperacion();
+                          operaciones = "";
+                        });
+                      },
+                      child: Text("²√"))
                 ],
               ),
               Row(
@@ -129,7 +139,16 @@ class _HomePageState extends State<HomePage> {
                           operaciones += " x ";
                         });
                       },
-                      child: Text("x"))
+                      child: Text("x")),
+                  ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          operaciones += " % ";
+                          _calcularOperacion();
+                          operaciones = "";
+                        });
+                      },
+                      child: Text("%"))
                 ],
               ),
               Row(
@@ -162,7 +181,16 @@ class _HomePageState extends State<HomePage> {
                           operaciones += " - ";
                         });
                       },
-                      child: Text("-"))
+                      child: Text("-")),
+                  ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          operaciones += " ^ ";
+                          _calcularOperacion();
+                          operaciones = "";
+                        });
+                      },
+                      child: Text("x²"))
                 ],
               ),
               Row(
@@ -181,10 +209,21 @@ class _HomePageState extends State<HomePage> {
                           operaciones = "";
                         });
                       },
+                      child: Text("CE")),
+                  ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          operaciones = "";
+                          setState(() {
+                            listaResultados.clear();
+                          });
+                        });
+                      },
                       child: Text("C")),
                   ElevatedButton(
                       onPressed: () {
                         _calcularOperacion();
+                        operaciones = "";
                       },
                       child: Text("=")),
                   ElevatedButton(
@@ -210,13 +249,29 @@ class _HomePageState extends State<HomePage> {
     double segundoTermino = 0;
     String operador = arreglo[1].trim();
 
-    // 1. realizar la validación cuando solo tengo un valor en operacion y doy click en = ,
-    if (arreglo[0].trim() == "" || arreglo[2].trim() == "" || operador == "") {
-      setState(() {
-//        resultadoOperaciones += "Los términos.están incompletos\n";
-        listaResultados.add(Text("Los términos.están incompletos"));
-      });
-    } else {
+    if (arreglo[1].trim() != "" && operador != "" && arreglo[2].trim() == "") {
+      primerTermino = double.parse(arreglo[0].trim());
+      if (arreglo[1].trim() != "" && operador == "√") {
+        resultado = sqrt(primerTermino);
+        operador = "²√";
+        setState(() {
+          listaResultados.add(Text("$operador $primerTermino = $resultado\n"));
+        });
+      } else if (arreglo[1].trim() != "" && operador == "^") {
+        resultado = pow(primerTermino, 2);
+        operador = "²";
+        setState(() {
+          listaResultados.add(Text("$primerTermino $operador = $resultado\n"));
+        });
+      } else if (arreglo[1].trim() != "" && operador == "%") {
+        resultado = primerTermino / 100;
+        setState(() {
+          listaResultados.add(Text("$primerTermino $operador = $resultado\n"));
+        });
+      }
+    } else if (arreglo[1].trim() != "" &&
+        operador != "" &&
+        arreglo[2].trim() != "") {
       primerTermino = double.parse(arreglo[0].trim());
       segundoTermino = double.parse(arreglo[2].trim());
       if (operador == "-") {
@@ -227,8 +282,9 @@ class _HomePageState extends State<HomePage> {
         resultado = primerTermino / segundoTermino;
       } else if (operador == "x") {
         resultado = primerTermino * segundoTermino;
+      } else if (operador == "√") {
+        resultado = sqrt(primerTermino);
       }
-
       setState(() {
         listaResultados.add(
             Text("$primerTermino $operador $segundoTermino = $resultado\n"));
